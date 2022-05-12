@@ -1,7 +1,7 @@
 <h1>Schools</h1>
 
 <% @schools.each do |school| %>
-  <h3><a href="/schools/<%= school.id %>"<%= school.school_name %></a></h3>
+  <h3><a href="/schools/<%= school.id %>"><%= school.school_name %></a></h3>
   <p> type: <%= school.school_address %></p>
   <p> active: <%= school.active %></p>
 <% end %>
