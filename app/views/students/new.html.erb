@@ -1,0 +1,11 @@
+<form action="/students" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Enter a new student:</p>
+  <label for="name">student Name:</label>
+  <input type='text' name='students[student_name]'/><br/>
+  <label for="name">School ID:</label>
+  <textarea name='students[school_id]'></textarea><br/>
+  <label for="name">student age:</label>
+  <textarea name='students[age]'></textarea><br/>
+  <input type='submit'/>
+</form>
