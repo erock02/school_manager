@@ -10,7 +10,8 @@ class StudentsController < ApplicationController
     student = Student.new({
     student_name: params[:students][:student_name],
     school_id: params[:students][:school_id],
-    age: params[:students][:age]
+    age: params[:students][:age],
+    frl: params[:students][:frl]
     })
 
     student.save
