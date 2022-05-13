@@ -13,10 +13,12 @@ RSpec.describe 'school index page', type: :feature do
     expect(page).to have_content(school1.school_name)
     expect(page).to have_content("address: #{school1.school_address}")
     expect(page).to have_content("created at: #{school1.created_at}")
+    expect(page).to have_content("updated at: #{school1.updated_at}")
     expect(page).to have_content("active: #{school1.active}")
     expect(page).to have_content(school2.school_name)
     expect(page).to have_content("address: #{school2.school_address}")
     expect(page).to have_content("created at: #{school2.created_at}")
+    expect(page).to have_content("updated at: #{school2.updated_at}")
     expect(page).to have_content("active: #{school2.active}")
   end
 end
