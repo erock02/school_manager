@@ -5,6 +5,8 @@ class CreateStudent < ActiveRecord::Migration[5.2]
       t.integer :school_id
       t.integer :age
       t.boolean :frl
+
+      t.timestamps
     end
   end
 end
