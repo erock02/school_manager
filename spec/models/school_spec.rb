@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe School, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    it { should validate_presence_of :school_name}
+    it { should validate_presence_of :school_address}
+    it { should allow_value(true).for(:active)}
+    it { should allow_value(false).for(:active)}
+  end
 end
