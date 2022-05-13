@@ -7,4 +7,8 @@ RSpec.describe School, type: :model do
     it { should allow_value(true).for(:active)}
     it { should allow_value(false).for(:active)}
   end
+
+  describe 'relationships' do
+    it { should have_many :students}
+  end
 end

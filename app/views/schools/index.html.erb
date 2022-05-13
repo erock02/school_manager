@@ -2,6 +2,7 @@
 
 <% @schools.each do |school| %>
   <h3><a href="/schools/<%= school.id %>"><%= school.school_name %></a></h3>
-  <p> type: <%= school.school_address %></p>
+  <p> address: <%= school.school_address %></p>
+  <p> created at: <%= school.created_at %></p>
   <p> active: <%= school.active %></p>
 <% end %>

@@ -8,4 +8,8 @@ RSpec.describe Student, type: :model do
     it { should allow_value(true).for(:frl)}
     it { should allow_value(false).for(:frl)}
   end
+
+  describe 'relationships' do
+    it { should belong_to :school}
+  end
 end
