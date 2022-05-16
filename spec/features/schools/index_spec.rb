@@ -21,4 +21,22 @@ RSpec.describe 'school index page', type: :feature do
     expect(page).to have_content("updated at: #{school2.updated_at}")
     expect(page).to have_content("active: #{school2.active}")
   end
+
+  it 'each page has school index link' do
+    school1 = School.create!( school_name: 'SHS',
+                              school_address: '123 abc st.',
+                              active: true)
+    student1 = Student.create!( student_name: 'Ice Cube',
+                                school_id: school1.id,
+                                age: 52,
+                                frl: true)
+    visit "/"
+    expect(page).to have_link("School Index", href: "/schools")
+    visit "/students"
+    expect(page).to have_link("School Index", href: "/schools")
+    visit "/schools/#{school1.id}"
+    expect(page).to have_link("School Index", href: "/schools")
+    visit "/students/#{student1.id}"
+    expect(page).to have_link("School Index", href: "/schools")
+  end
 end
