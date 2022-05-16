@@ -38,12 +38,12 @@ RSpec.describe 'student index page', type: :feature do
                                 age: 52,
                                 frl: true)
     visit "/"
-    expect(page).to have_link("Student Index", href: "/students")
+    expect(page).to have_link("Students", href: "/students")
     visit "/schools"
-    expect(page).to have_link("Student Index", href: "/students")
+    expect(page).to have_link("Students", href: "/students")
     visit "/schools/#{school1.id}"
-    expect(page).to have_link("Student Index", href: "/students")
+    expect(page).to have_link("Students", href: "/students")
     visit "/students/#{student1.id}"
-    expect(page).to have_link("Student Index", href: "/students")
+    expect(page).to have_link("Students", href: "/students")
   end
 end
