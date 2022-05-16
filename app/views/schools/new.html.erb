@@ -1,0 +1,11 @@
+<form action="/schools" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>Enter a new school:</p>
+  <label for="name">School Name:</label>
+  <input type='text' name='schools[school_name]'/><br/>
+  <label for="name">School address:</label>
+  <textarea name='schools[school_address]'></textarea><br/>
+  <label for="name">School active:</label>
+  <textarea name='schools[active]'></textarea><br/>
+  <input type='submit'/>
+</form>
