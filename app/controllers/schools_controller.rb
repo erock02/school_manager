@@ -1,6 +1,6 @@
 class SchoolsController < ApplicationController
   def index
-    @schools = School.order(created_at: :desc)
+    @schools = School.all
   end
 
   def new

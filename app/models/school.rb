@@ -6,4 +6,8 @@ class School < ApplicationRecord
   def student_count
     self.students.count
   end
+
+  def self.most_recent
+    order(created_at: :desc)
+  end
 end

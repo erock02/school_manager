@@ -1,10 +1,12 @@
 <a href="/students">Student Index</a>
 <h1>Schools</h1>
 
-<% @schools.each do |school| %>
-  <h3><a href="/schools/<%= school.id %>"><%= school.school_name %></a></h3>
-  <p> address: <%= school.school_address %></p>
-  <p> created at: <%= school.created_at %></p>
-  <p> updated at: <%= school.updated_at %></p>
-  <p> active: <%= school.active %></p>
+<% @schools.most_recent.each_with_index do |school, index| %>
+  <div id="school-<%= index %>">
+    <h3><a href="/schools/<%= school.id %>"><%= school.school_name %></a></h3>
+    <p> address: <%= school.school_address %></p>
+    <p> created at: <%= school.created_at %></p>
+    <p> updated at: <%= school.updated_at %></p>
+    <p> active: <%= school.active %></p>
+  </div>
 <% end %>
