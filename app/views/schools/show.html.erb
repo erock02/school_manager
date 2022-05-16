@@ -5,3 +5,5 @@
 <p>Created At: <%= @school.created_at %></p>
 <p>Updated At: <%= @school.updated_at %></p>
 <p>Active: <%= @school.active %></p>
+<p>Student Count: <%= @school.student_count %></p>
+<a href=<%= "/schools/#{@school.id}/students" %>><%= "#{@school.school_name} students" %></a>
