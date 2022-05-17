@@ -15,6 +15,16 @@ class SchoolsController < ApplicationController
     @school = School.find(params[:id])
   end
 
+  def edit
+    @school_id = params[:id]
+  end
+
+  def update
+    school = School.find(params[:id])
+    school.update(school_params)
+    redirect_to '/schools'
+  end
+
   private
     def school_params
       params.permit(:school_name, :school_address, :active)

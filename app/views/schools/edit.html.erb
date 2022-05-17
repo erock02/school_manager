@@ -1,0 +1,9 @@
+<%= form_with url: "/schools/#{@school_id}", method: :patch, local: true do |form| %>
+<%= form.label :school_name %>
+<%= form.text_field :school_name %>
+<%= form.label :school_address %>
+<%= form.text_field :school_address %>
+<%= form.label :active %>
+<%= form.text_field :active%>
+<%= form.submit 'Update School' %>
+<% end %>

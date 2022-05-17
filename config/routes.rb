@@ -7,4 +7,6 @@ get '/schools/:id', to: "schools#show"
 get '/students', to: 'students#index'
 get '/students/:id', to: "students#show"
 get '/schools/:school_id/students', to: 'school_students#index'
+get '/schools/:id/edit', to: 'schools#edit'
+patch '/schools/:id', to: 'schools#update'
 end

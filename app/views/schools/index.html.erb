@@ -9,5 +9,6 @@
     <p> created at: <%= school.created_at %></p>
     <p> updated at: <%= school.updated_at %></p>
     <p> active: <%= school.active %></p>
+    <%= link_to 'Update School', "/schools/#{school.id}/edit" %>
   </div>
 <% end %>
