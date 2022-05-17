@@ -1,7 +1,7 @@
 <%= link_to 'Students', '/students' %>
 <a href="/schools">School Index</a>
 <h1><%= @school.school_name %></h1>
-
+<%= link_to "Create Student", "/schools/#{@school.id}/students/new" %>
 <% @students.each do |student| %>
   <h3><a href="/students/<%= student.id %>"><%= student.student_name %></a></h3>
   <p> School ID: <%= student.school_id %></p>

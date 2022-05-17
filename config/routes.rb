@@ -9,4 +9,6 @@ get '/students/:id', to: "students#show"
 get '/schools/:school_id/students', to: 'school_students#index'
 get '/schools/:id/edit', to: 'schools#edit'
 patch '/schools/:id', to: 'schools#update'
+get '/schools/:school_id/students/new', to: 'school_students#new'
+post '/schools/:school_id/students', to: 'school_students#create'
 end
