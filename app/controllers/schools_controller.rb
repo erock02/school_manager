@@ -7,18 +7,16 @@ class SchoolsController < ApplicationController
   end
 
   def create
-    school = School.new({
-    school_name: params[:schools][:school_name],
-    school_address: params[:schools][:school_address],
-    active: params[:schools][:active]
-    })
-
-    school.save
-
+    school = School.create(school_params)
     redirect_to '/schools'
   end
 
   def show
     @school = School.find(params[:id])
   end
+
+  private
+    def school_params
+      params.permit(:school_name, :school_address, :active)
+    end
 end
