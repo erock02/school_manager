@@ -7,19 +7,16 @@ class StudentsController < ApplicationController
   end
 
   def create
-    student = Student.new({
-    student_name: params[:students][:student_name],
-    school_id: params[:students][:school_id],
-    age: params[:students][:age],
-    frl: params[:students][:frl]
-    })
-
-    student.save
-
+    student = Student.create(student_params)
     redirect_to '/students'
   end
 
   def show
     @student = Student.find(params[:id])
   end
+
+  private
+    def student_params
+      params.permit(:student_name, :age, :frl)
+    end
 end
