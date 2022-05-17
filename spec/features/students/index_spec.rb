@@ -5,14 +5,12 @@ RSpec.describe 'student index page', type: :feature do
     school1 = School.create!( school_name: 'SHS',
                               school_address: '123 abc st.',
                               active: true)
-    student1 = Student.create!( student_name: 'Ice Cube',
-                                school_id: school1.id,
-                                age: 52,
-                                frl: true)
-    student2 = Student.create!( student_name: 'Harry Styles',
-                                school_id: school1.id,
-                                age: 28,
-                                frl: false)
+    student1 = school1.students.create!(student_name: 'Ice Cube',
+                                        age: 52,
+                                        frl: true)
+    student2 = school1.students.create!(student_name: 'Harry Styles',
+                                        age: 28,
+                                        frl: false)
     visit "/students"
 
     expect(page).to have_content(student1.student_name)
@@ -33,10 +31,9 @@ RSpec.describe 'student index page', type: :feature do
     school1 = School.create!( school_name: 'SHS',
                               school_address: '123 abc st.',
                               active: true)
-    student1 = Student.create!( student_name: 'Ice Cube',
-                                school_id: school1.id,
-                                age: 52,
-                                frl: true)
+    student1 = school1.students.create!(student_name: 'Ice Cube',
+                                        age: 52,
+                                        frl: true)
     visit "/"
     expect(page).to have_link("Students", href: "/students")
     visit "/schools"

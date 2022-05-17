@@ -5,8 +5,7 @@ RSpec.describe 'student show page', type: :feature do
     school1 = School.create!( school_name: 'SHS',
                               school_address: '123 abc st.',
                               active: true)
-    student1 = Student.create!( student_name: 'Ice Cube',
-                                school_id: school1.id,
+    student1 = school1.students.create!( student_name: 'Ice Cube',
                                 age: 52,
                                 frl: true)
 
