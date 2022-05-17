@@ -32,4 +32,29 @@ RSpec.describe 'students that belong to a school index page', type: :feature do
     expect(page).to have_content("created at: #{student3.created_at}")
     expect(page).to have_content("updated at: #{student3.updated_at}")
   end
+
+  describe 'as a visitor' do
+    it 'can click a link to adopt a student' do
+      school1 = School.create!( school_name: 'SHS',
+                                school_address: '123 abc st.',
+                                active: true)
+
+      visit "/schools/#{school1.id}/students"
+
+      click_link 'Create Student'
+
+      expect(current_path).to eq("/schools/#{school1.id}/students/new")
+
+      fill_in 'student_name', with: 'Denzel Washington'
+      fill_in 'age', with: 67
+      fill_in 'frl', with: 'false'
+      click_on "Create Student"
+      expect(current_path).to eq("/schools/#{school1.id}/students")
+      expect(page).to have_content('Denzel Washington')
+      expect(page).to have_content(67)
+      expect(page).to have_content(false)
+      expect(page).to_not have_content(true)
+
+    end
+  end
 end
