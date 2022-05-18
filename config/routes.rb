@@ -14,4 +14,5 @@ post '/schools/:school_id/students', to: 'school_students#create'
 get '/students/:id/edit', to: 'students#edit'
 patch '/students/:id', to: 'students#update'
 delete '/schools/:id', to: 'schools#destroy'
+delete '/students/:id', to: 'students#destroy'
 end
