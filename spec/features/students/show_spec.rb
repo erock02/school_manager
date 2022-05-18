@@ -40,4 +40,23 @@ RSpec.describe 'student show page', type: :feature do
     expect(page).to have_content('Dr. Dre')
     expect(page).to_not have_content('Ice Cube')
   end
+
+  it 'has update student link' do
+    school1 = School.create!( school_name: 'SHS',
+                              school_address: '123 abc st.',
+                              active: true)
+    student1 = school1.students.create!( student_name: 'Ice Cube',
+                                        age: 52,
+                                        frl: true)
+    student2 = school1.students.create!( student_name: 'Harry Styles',
+                                        age: 28,
+                                        frl: false)
+
+    visit "/students/#{student1.id}"
+    expect(page).to have_link("Update Student", href: "/students/#{student1.id}/edit")
+
+    visit "/students/#{student2.id}"
+    expect(page).to have_link("Update Student", href: "/students/#{student2.id}/edit")
+
+  end
 end

@@ -40,4 +40,19 @@ RSpec.describe 'school show page', type: :feature do
     visit "/schools/#{school2.id}"
     expect(page).to have_content("Student Count: #{school2.student_count}")
   end
+
+  it 'has update school link' do
+    school1 = School.create!( school_name: 'SHS',
+                              school_address: '123 abc st.',
+                              active: true)
+    school2 = School.create!( school_name: 'GHS',
+      school_address: '456 def st.',
+      active: true)
+    visit "/schools/#{school1.id}"
+    expect(page).to have_link("Update School", href: "/schools/#{school1.id}/edit")
+
+    visit "/schools/#{school2.id}"
+    expect(page).to have_link("Update School", href: "/schools/#{school2.id}/edit")
+
+  end
 end
