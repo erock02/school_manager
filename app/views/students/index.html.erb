@@ -9,5 +9,6 @@
     <p> FRL: <%= student.frl %></p>
     <p> created at: <%= student.created_at %></p>
     <p> updated at: <%= student.updated_at %></p>
+    <%= link_to 'Update Student', "/students/#{student.id}/edit" %>
   </div>
 <% end %>
