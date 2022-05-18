@@ -1,5 +1,5 @@
 class School < ApplicationRecord
-  has_many :students
+  has_many :students, dependent: :delete_all
   validates_presence_of :school_name, :school_address
   validates :active, inclusion: [true, false]
 
