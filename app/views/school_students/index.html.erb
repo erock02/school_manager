@@ -1,12 +1,21 @@
 <%= link_to 'Students', '/students' %>
 <h1><%= @school.school_name %></h1>
 <%= link_to "Create Student", "/schools/#{@school.id}/students/new" %>
+
 <p>
 <%= form_with url: "/schools/#{@school.id}/students", method: :get, local: true do |form| %>
 <%= form.hidden_field :sort_a, value: true %>
 <%= form.submit 'Sort Students' %>
 <% end %>
 </p>
+
+<p>
+  <%= form_with url: "/schools/#{@school.id}/students", method: :get, local: true do |form| %>
+  <%= form.text_field :desired_age %>
+  <%= form.submit "Only return records with more than this many years of age" %>
+  <% end %>
+</p>
+
 <% @students.each_with_index do |student, index| %>
   <div id="school_student-<%= index %>">
   <h3><a href="/students/<%= student.id %>"><%= student.student_name %></a></h3>

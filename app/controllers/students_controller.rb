@@ -20,6 +20,12 @@ class StudentsController < ApplicationController
     redirect_to "/students/#{student.id}"
   end
 
+  def destroy
+    student = Student.find(params[:id])
+    student.destroy
+    redirect_to "/students"
+  end
+
   private
     def student_params
       params.permit(:student_name, :age, :frl)

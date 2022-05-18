@@ -25,6 +25,12 @@ class SchoolsController < ApplicationController
     redirect_to '/schools'
   end
 
+  def destroy
+    school = School.find(params[:id])
+    school.destroy
+    redirect_to '/schools'
+  end
+
   private
     def school_params
       params.permit(:school_name, :school_address, :active)

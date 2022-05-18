@@ -1,11 +1,14 @@
 class SchoolStudentsController < ApplicationController
   def index
     @school = School.find(params[:school_id])
-    if params[:sort_a] == 'true'
+    if params[:sort_a]
       @students = @school.students.order(:student_name)
+    elsif params[:desired_age]
+      @students = @school.students.where("age > #{params[:desired_age].to_i}")
     else
       @students = @school.students
     end
+
   end
 
   def new
