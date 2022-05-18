@@ -72,4 +72,23 @@ RSpec.describe 'student index page', type: :feature do
     end
   end
 
+  it 'each student has an edit button' do
+    school1 = School.create!( school_name: 'SHS',
+                              school_address: '123 abc st.',
+                              active: true)
+    student1 = school1.students.create!( student_name: 'Ice Cube',
+                                age: 52,
+                                frl: true)
+    student2 = school1.students.create!( student_name: 'Harry Styles',
+                                age: 28,
+                                frl: true)
+    student3 = school1.students.create!( student_name: 'James Franco',
+                                age: 44,
+                                frl: true)
+    visit "/students"
+    expect(page).to have_link("Update Student", href: "/students/#{student1.id}/edit")
+    expect(page).to have_link("Update Student", href: "/students/#{student2.id}/edit")
+    expect(page).to have_link("Update Student", href: "/students/#{student3.id}/edit")
+  end
+
 end
