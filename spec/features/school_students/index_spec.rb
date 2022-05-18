@@ -56,5 +56,44 @@ RSpec.describe 'students that belong to a school index page', type: :feature do
       expect(page).to_not have_content(true)
 
     end
+
+    it 'can click button and sort students alphabetically' do
+      school1 = School.create!( school_name: 'SHS',
+                                school_address: '123 abc st.',
+                                active: true)
+      student1 = school1.students.create!(student_name: 'James Franco',
+                                          age: 44,
+                                          frl: true)
+      student2 = school1.students.create!(student_name: 'Harry Styles',
+                                          age: 28,
+                                          frl: true)
+      student3 = school1.students.create!(student_name: 'Ice Cube',
+        age: 52,
+        frl: true)
+
+      visit "/schools/#{school1.id}/students"
+      within("#school_student-0") do
+        expect(page).to have_content("James Franco")
+      end
+      within("#school_student-1") do
+        expect(page).to have_content("Harry Styles")
+      end
+      within("#school_student-2") do
+        expect(page).to have_content("Ice Cube")
+      end
+
+      click_button 'Sort Students'
+
+      within("#school_student-0") do
+        expect(page).to have_content("Harry Styles")
+      end
+      within("#school_student-1") do
+        expect(page).to have_content("Ice Cube")
+      end
+      within("#school_student-2") do
+        expect(page).to have_content("James Franco")
+      end
+
+    end
   end
 end
