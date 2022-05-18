@@ -10,7 +10,7 @@ RSpec.describe 'student index page', type: :feature do
                                         frl: true)
     student2 = school1.students.create!(student_name: 'Harry Styles',
                                         age: 28,
-                                        frl: false)
+                                        frl: true)
     visit "/students"
 
     expect(page).to have_content(student1.student_name)
@@ -43,4 +43,33 @@ RSpec.describe 'student index page', type: :feature do
     visit "/students/#{student1.id}"
     expect(page).to have_link("Students", href: "/students")
   end
+
+  it 'only displays students who are FRL' do
+    school1 = School.create!( school_name: 'SHS',
+                              school_address: '123 abc st.',
+                              active: true)
+    student1 = school1.students.create!( student_name: 'Ice Cube',
+                                age: 52,
+                                frl: true)
+    student2 = school1.students.create!( student_name: 'Harry Styles',
+                                age: 28,
+                                frl: false)
+    student3 = school1.students.create!( student_name: 'James Franco',
+                                age: 44,
+                                frl: true)
+
+    visit "/students"
+
+    within("#student-0") do
+      expect(page).to have_content("Ice Cube")
+      expect(page).to have_content(52)
+      expect(page).to have_content(true)
+    end
+    within("#student-1") do
+      expect(page).to have_content("James Franco")
+      expect(page).to have_content(44)
+      expect(page).to have_content(true)
+    end
+  end
+
 end
