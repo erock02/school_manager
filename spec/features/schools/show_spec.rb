@@ -21,15 +21,15 @@ RSpec.describe 'school show page', type: :feature do
     school2 = School.create!( school_name: 'GHS',
                               school_address: '456 def st.',
                               active: true)
-    student1 = Student.create!( student_name: 'Ice Cube',
+    student1 = school1.students.create!( student_name: 'Ice Cube',
                                 school_id: school1.id,
                                 age: 52,
                                 frl: true)
-    student2 = Student.create!( student_name: 'Harry Styles',
+    student2 = school2.students.create!( student_name: 'Harry Styles',
                                 school_id: school2.id,
                                 age: 28,
                                 frl: false)
-    student3 = Student.create!( student_name: 'James Franco',
+    student3 = school1.students.create!( student_name: 'James Franco',
                                 school_id: school1.id,
                                 age: 44,
                                 frl: false)
@@ -39,5 +39,20 @@ RSpec.describe 'school show page', type: :feature do
 
     visit "/schools/#{school2.id}"
     expect(page).to have_content("Student Count: #{school2.student_count}")
+  end
+
+  it 'has update school link' do
+    school1 = School.create!( school_name: 'SHS',
+                              school_address: '123 abc st.',
+                              active: true)
+    school2 = School.create!( school_name: 'GHS',
+      school_address: '456 def st.',
+      active: true)
+    visit "/schools/#{school1.id}"
+    expect(page).to have_link("Update School", href: "/schools/#{school1.id}/edit")
+
+    visit "/schools/#{school2.id}"
+    expect(page).to have_link("Update School", href: "/schools/#{school2.id}/edit")
+
   end
 end

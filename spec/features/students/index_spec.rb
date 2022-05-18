@@ -5,14 +5,12 @@ RSpec.describe 'student index page', type: :feature do
     school1 = School.create!( school_name: 'SHS',
                               school_address: '123 abc st.',
                               active: true)
-    student1 = Student.create!( student_name: 'Ice Cube',
-                                school_id: school1.id,
-                                age: 52,
-                                frl: true)
-    student2 = Student.create!( student_name: 'Harry Styles',
-                                school_id: school1.id,
-                                age: 28,
-                                frl: false)
+    student1 = school1.students.create!(student_name: 'Ice Cube',
+                                        age: 52,
+                                        frl: true)
+    student2 = school1.students.create!(student_name: 'Harry Styles',
+                                        age: 28,
+                                        frl: true)
     visit "/students"
 
     expect(page).to have_content(student1.student_name)
@@ -33,10 +31,9 @@ RSpec.describe 'student index page', type: :feature do
     school1 = School.create!( school_name: 'SHS',
                               school_address: '123 abc st.',
                               active: true)
-    student1 = Student.create!( student_name: 'Ice Cube',
-                                school_id: school1.id,
-                                age: 52,
-                                frl: true)
+    student1 = school1.students.create!(student_name: 'Ice Cube',
+                                        age: 52,
+                                        frl: true)
     visit "/"
     expect(page).to have_link("Students", href: "/students")
     visit "/schools"
@@ -46,4 +43,52 @@ RSpec.describe 'student index page', type: :feature do
     visit "/students/#{student1.id}"
     expect(page).to have_link("Students", href: "/students")
   end
+
+  it 'only displays students who are FRL' do
+    school1 = School.create!( school_name: 'SHS',
+                              school_address: '123 abc st.',
+                              active: true)
+    student1 = school1.students.create!( student_name: 'Ice Cube',
+                                age: 52,
+                                frl: true)
+    student2 = school1.students.create!( student_name: 'Harry Styles',
+                                age: 28,
+                                frl: false)
+    student3 = school1.students.create!( student_name: 'James Franco',
+                                age: 44,
+                                frl: true)
+
+    visit "/students"
+
+    within("#student-0") do
+      expect(page).to have_content("Ice Cube")
+      expect(page).to have_content(52)
+      expect(page).to have_content(true)
+    end
+    within("#student-1") do
+      expect(page).to have_content("James Franco")
+      expect(page).to have_content(44)
+      expect(page).to have_content(true)
+    end
+  end
+
+  it 'each student has an edit button' do
+    school1 = School.create!( school_name: 'SHS',
+                              school_address: '123 abc st.',
+                              active: true)
+    student1 = school1.students.create!( student_name: 'Ice Cube',
+                                age: 52,
+                                frl: true)
+    student2 = school1.students.create!( student_name: 'Harry Styles',
+                                age: 28,
+                                frl: true)
+    student3 = school1.students.create!( student_name: 'James Franco',
+                                age: 44,
+                                frl: true)
+    visit "/students"
+    expect(page).to have_link("Update Student", href: "/students/#{student1.id}/edit")
+    expect(page).to have_link("Update Student", href: "/students/#{student2.id}/edit")
+    expect(page).to have_link("Update Student", href: "/students/#{student3.id}/edit")
+  end
+
 end

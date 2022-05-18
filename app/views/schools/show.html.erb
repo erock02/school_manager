@@ -6,4 +6,5 @@
 <p>Updated At: <%= @school.updated_at %></p>
 <p>Active: <%= @school.active %></p>
 <p>Student Count: <%= @school.student_count %></p>
-<%= link_to "#{@school.school_name} Students", '/students' %>
+<%= link_to 'Update School', "/schools/#{@school.id}/edit" %>
+<%= link_to "#{@school.school_name} Students", "#{@school.id}/students" %>

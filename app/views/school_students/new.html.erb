@@ -1,0 +1,9 @@
+<%= form_with url: "/schools/#{@school_id}/students", method: :post, local: true do |form| %>
+<%= form.label :student_name %>
+<%= form.text_field :student_name %>
+<%= form.label :age %>
+<%= form.text_field :age %>
+<%= form.label :frl %>
+<%= form.text_field :frl %>
+<%= form.submit 'Create Student'%>
+<% end %>

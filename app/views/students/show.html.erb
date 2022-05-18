@@ -1,9 +1,10 @@
 <%= link_to 'Students', '/students' %>
 <%= link_to 'Schools', '/schools' %>
 
-<h1><%= @student.student_name %></h1>
-<p>School ID: <%= @student.school_id %></p>
-<p>Student Age: <%= @student.age %></p>
-<p>FRL: <%= @student.frl %></p>
-<p>created at: <%= @student.created_at %></p>
-<p>updated at: <%= @student.updated_at %></p>
+  <h1><%= @student.student_name %></h1>
+  <p>School ID: <%= @student.school_id %></p>
+  <p>Student Age: <%= @student.age %></p>
+  <p>FRL: <%= @student.frl %></p>
+  <p>created at: <%= @student.created_at %></p>
+  <p>updated at: <%= @student.updated_at %></p>
+<%= link_to "Update Student", "/students/#{@student.id}/edit" %>

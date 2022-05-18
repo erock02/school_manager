@@ -1,4 +1,5 @@
 <%= link_to 'Students', '/students' %>
+<%= link_to 'New School', '/schools/new' %>
 <h1>Schools</h1>
 
 <% @schools.most_recent.each_with_index do |school, index| %>
@@ -8,5 +9,6 @@
     <p> created at: <%= school.created_at %></p>
     <p> updated at: <%= school.updated_at %></p>
     <p> active: <%= school.active %></p>
+    <%= link_to 'Update School', "/schools/#{school.id}/edit" %>
   </div>
 <% end %>
