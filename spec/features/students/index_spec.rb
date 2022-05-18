@@ -91,4 +91,23 @@ RSpec.describe 'student index page', type: :feature do
     expect(page).to have_link("Update Student", href: "/students/#{student3.id}/edit")
   end
 
+  it 'each student has an delete button' do
+    school1 = School.create!( school_name: 'SHS',
+                              school_address: '123 abc st.',
+                              active: true)
+    student1 = school1.students.create!( student_name: 'Ice Cube',
+                                age: 52,
+                                frl: true)
+    student2 = school1.students.create!( student_name: 'Harry Styles',
+                                age: 28,
+                                frl: true)
+    student3 = school1.students.create!( student_name: 'James Franco',
+                                age: 44,
+                                frl: true)
+    visit "/students"
+    expect(page).to have_link("Delete Student", href: "/students/#{student1.id}")
+    expect(page).to have_link("Delete Student", href: "/students/#{student2.id}")
+    expect(page).to have_link("Delete Student", href: "/students/#{student3.id}")
+  end
+
 end
