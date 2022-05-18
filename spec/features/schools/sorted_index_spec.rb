@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'students that belong to a school index page', type: :feature do
-  it 'can see all students that belong to a school' do
+  it 'shows students in order by created_by date' do
     school1 = School.create!( school_name: 'SHS',
                               school_address: '123 abc st.',
                               active: true)
