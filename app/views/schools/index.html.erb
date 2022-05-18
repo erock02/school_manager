@@ -10,5 +10,6 @@
     <p> updated at: <%= school.updated_at %></p>
     <p> active: <%= school.active %></p>
     <%= link_to 'Update School', "/schools/#{school.id}/edit" %>
+    <%= link_to 'Delete School', "/schools/#{school.id}", method: :delete %>
   </div>
 <% end %>
