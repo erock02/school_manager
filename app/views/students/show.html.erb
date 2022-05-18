@@ -1,5 +1,6 @@
 <%= link_to 'Students', '/students' %>
 <%= link_to 'Schools', '/schools' %>
+<%= link_to "Update Student", "/students/#{@student.id}/edit" %>
 
 <h1><%= @student.student_name %></h1>
 <p>School ID: <%= @student.school_id %></p>

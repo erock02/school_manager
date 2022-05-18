@@ -11,4 +11,6 @@ get '/schools/:id/edit', to: 'schools#edit'
 patch '/schools/:id', to: 'schools#update'
 get '/schools/:school_id/students/new', to: 'school_students#new'
 post '/schools/:school_id/students', to: 'school_students#create'
+get '/students/:id/edit', to: 'students#edit'
+patch '/students/:id', to: 'students#update'
 end
